@@ -64,6 +64,9 @@ pipeline {
         }
         
         stage('SonarScanner') {
+            when {
+                environment name: "GIT_BRANCH", value: "origin/main"
+            }
             steps {
                 withSonarQubeEnv("sonarqube-server") {
                     sh """
